@@ -204,7 +204,7 @@
 #endif /* !CONFIG_ARM64 */
 #else
 #define CONFIG_SPL_TEXT_BASE		0x60		/* sram start+header */
-#define CONFIG_SPL_MAX_SIZE		0x5fa0		/* 24KB on sun4i/sun7i */
+#define CONFIG_SPL_MAX_SIZE		0x7fa0		/* 24KB on sun4i/sun7i */
 #define LOW_LEVEL_SRAM_STACK		0x00008000	/* End of sram */
 #endif
 
