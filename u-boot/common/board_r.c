@@ -417,6 +417,10 @@ static int initr_spi(void)
 	return 0;
 }
 #endif
+static int initr_soft_spi(void)
+{
+	spi_soft_init();
+}
 
 #ifdef CONFIG_CMD_NAND
 /* go init the NAND */
@@ -1093,6 +1097,7 @@ static init_fnc_t init_sequence_r[] = {
 #ifdef CONFIG_PPC
 	initr_spi,
 #endif
+	initr_soft_spi,
 #ifdef CONFIG_CMD_NAND
 	initr_nand,
 #endif

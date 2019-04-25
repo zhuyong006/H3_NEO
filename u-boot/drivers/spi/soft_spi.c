@@ -118,9 +118,7 @@ static int soft_spi_xfer(struct udevice *dev, unsigned int bitlen,
 	int		cpha = priv->mode & SPI_CPHA;
 	unsigned int	j;
 
-	debug("spi_xfer: slave %s:%s dout %08X din %08X bitlen %u\n",
-	      dev->parent->name, dev->name, *(uint *)txd, *(uint *)rxd,
-	      bitlen);
+	udelay(plat->spi_delay_us);
 
 	if (flags & SPI_XFER_BEGIN)
 		soft_spi_cs_activate(dev);

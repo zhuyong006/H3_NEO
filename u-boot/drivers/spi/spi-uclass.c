@@ -457,6 +457,14 @@ UCLASS_DRIVER(spi) = {
 	.child_post_bind = spi_child_post_bind,
 #endif
 };
+void spi_soft_init()
+{
+       struct udevice *dev;
+
+       debug("Jon,%s,LINE=%d\n",__func__,__LINE__);
+       uclass_get_device(UCLASS_SPI, 0, &dev);
+       device_probe(dev);
+}
 
 UCLASS_DRIVER(spi_generic) = {
 	.id		= UCLASS_SPI_GENERIC,

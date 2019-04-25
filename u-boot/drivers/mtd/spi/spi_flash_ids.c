@@ -62,7 +62,10 @@ const struct spi_flash_info spi_flash_ids[] = {
 	{"en25q128b",	   INFO(0x1c3018, 0x0, 64 * 1024,   256, 0) },
 	{"en25s64",	   INFO(0x1c3817, 0x0, 64 * 1024,   128, 0) },
 #endif
-#ifdef CONFIG_SPI_FLASH_GIGADEVICE	/* GIGADEVICE */
+
+//#ifdef CONFIG_SPI_FLASH_GIGADEVICE	/* GIGADEVICE */
+#if 1
+	{"gd25q128",	   INFO(0xc84018, 0x0, 64 * 1024,	256, SECT_4K) },
 	{"gd25q64b",	   INFO(0xc84017, 0x0, 64 * 1024,   128, SECT_4K) },
 	{"gd25lq32",	   INFO(0xc86016, 0x0, 64 * 1024,    64, SECT_4K) },
 #endif

@@ -75,7 +75,28 @@
 			default-state = "on";
 		};
 	};
+	
+	spi0{
+		compatible = "spi-gpio";
+		pinctrl-names = "default";
+		pinctrl-0 = <&spi0_in_pins>, <&spi0_out_pins>;
+		status = "okay";
+		spi-delay-us = <10>;
+		gpio-sck = <&pio 2 2 GPIO_ACTIVE_HIGH>;
+		gpio-mosi = <&pio 2 0 GPIO_ACTIVE_HIGH>;
+		gpio-miso = <&pio 2 1 GPIO_ACTIVE_HIGH>;
+		cs-gpios = <&pio 2 3 GPIO_ACTIVE_HIGH>;
+		num-chipselects = <1>;
+		#address-cells = <1>;
+		#size-cells = <0>;
 
+		firmware_storage_spi: flash@0 {
+			reg = <0>;
+			compatible = "spi-flash";
+			spi-max-frequency = <10000>;
+		};	
+	};
+	
 	r_gpio_keys {
 		compatible = "gpio-keys";
 		input-name = "k1";
@@ -96,6 +117,7 @@
 		#size-cells = <0>;
 	};
 };
+
 
 &ehci3 {
 	status = "okay";
@@ -132,6 +154,18 @@
 		pins = "PL3";
 		function = "gpio_in";
 	};
+	spi0_in_pins: spi0_in_pins@0 {
+		allwinner,pins = "PC2";
+		allwinner,function = "gpio_in";
+		allwinner,drive = <SUN4I_PINCTRL_10_MA>;
+		allwinner,pull = <SUN4I_PINCTRL_PULL_UP>;
+	};	
+	spi0_out_pins: spi0_out_pins@0 {
+		allwinner,pins = "PC0", "PC1", "PC3";
+		allwinner,function = "gpio_out";
+		allwinner,drive = <SUN4I_PINCTRL_10_MA>;
+		allwinner,pull = <SUN4I_PINCTRL_PULL_UP>;
+	};	
 };
 
 &uart0 {

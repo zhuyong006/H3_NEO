@@ -34,7 +34,7 @@
 #define SPI_PREAMBLE_END_BYTE	0xec
 
 #define SPI_DEFAULT_WORDLEN	8
-
+extern void spi_soft_init();
 #ifdef CONFIG_DM_SPI
 /* TODO(sjg@chromium.org): Remove this and use max_hz from struct spi_slave */
 struct dm_spi_bus {
