@@ -420,6 +420,7 @@ static int initr_spi(void)
 static int initr_soft_spi(void)
 {
 	spi_soft_init();
+	return 0;
 }
 
 #ifdef CONFIG_CMD_NAND

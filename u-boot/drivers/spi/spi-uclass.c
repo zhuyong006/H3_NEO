@@ -457,7 +457,7 @@ UCLASS_DRIVER(spi) = {
 	.child_post_bind = spi_child_post_bind,
 #endif
 };
-void spi_soft_init()
+void spi_soft_init(void)
 {
        struct udevice *dev;
 
