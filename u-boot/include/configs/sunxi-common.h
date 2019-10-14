@@ -49,6 +49,7 @@
 # define CONFIG_SYS_NS16550_COM5		SUNXI_R_UART_BASE
 #endif
 
+#define CONFIG_ENV_SECT_SIZE (64 * 1024)
 /* CPU */
 #define COUNTER_FREQUENCY		24000000
 
@@ -270,6 +271,16 @@ extern int soft_i2c_gpio_scl;
 #error Unsupported console port nr. Please fix stdout-path in sunxi-common.h.
 #endif
 #endif /* ifdef CONFIG_REQUIRE_SERIAL_CONSOLE */
+
+
+/* u-boot env in serial flash, by default is bus 0 and cs 0 */
+
+#define CONFIG_BOOTCOMMAND		"sf probe 0; "				\
+					"sf read 0x48000000 0x300000 0x30000; "	\
+					"sf read 0x46000000 0x400000 0x600000; "	\
+					"bootz 0x46000000 - 0x48000000"
+
+
 
 /* GPIO */
 #define CONFIG_SUNXI_GPIO

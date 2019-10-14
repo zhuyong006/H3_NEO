@@ -495,6 +495,8 @@ static int initr_env(void)
 #if defined(CONFIG_MACH_SUN8I_H3_NANOPI) || defined(CONFIG_MACH_SUN50I_H5_NANOPI)
 #define SUNXI_BOOTED_FROM_MMC0	0
 #define SUNXI_BOOTED_FROM_MMC2	2
+#define SUNXI_BOOTED_FROM_SPI	3
+
 #ifdef CONFIG_MACH_SUN8I_H3_NANOPI
 #define SPL_ADDR		0x0
 #elif defined(CONFIG_MACH_SUN50I_H5_NANOPI)
@@ -509,12 +511,15 @@ static int init_env_boot_mmc(void)
 
 	if (boot_source == SUNXI_BOOTED_FROM_MMC0) {
 		sprintf(boot_mmc_buf, "%s", "0");
-	} else if (boot_source == SUNXI_BOOTED_FROM_MMC2) {
+	}else if (boot_source == SUNXI_BOOTED_FROM_MMC2) {
 		sprintf(boot_mmc_buf, "%s", "2");
+	}else if (boot_source == SUNXI_BOOTED_FROM_SPI) {
+		sprintf(boot_mmc_buf, "%s", "3");
 	} else {
 		printf("ERROR: unsupported boot mmc %d\n", boot_source);
 		hang();
 	}
+	
 	if (env_set("boot_mmc", boot_mmc_buf)) {
 		printf("env_set boot_mmc=%s fail\n", boot_mmc_buf);
 		hang();
